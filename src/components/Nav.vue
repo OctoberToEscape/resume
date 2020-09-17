@@ -4,7 +4,7 @@
             :style="{
                 width: IWidth + '%',
                 height: IHeight + 'px',
-                background: IBackground,
+                background: IBackground
             }"
             :class="shows ? 'fixed' : null"
         >
@@ -28,40 +28,40 @@ export default {
             type: Array,
             default: () => {
                 return [];
-            },
+            }
         },
         IWidth: {
             type: String | Number,
             default: () => {
                 return 50;
-            },
+            }
         },
         IHeight: {
             type: String | Number,
             default: () => {
                 return 50;
-            },
+            }
         },
         IBackground: {
             type: String,
             default: () => {
                 return "#fff";
-            },
+            }
         },
         ISize: {
             type: Number,
             default: () => {
                 return 12;
-            },
-        },
+            }
+        }
     },
     data() {
         return {
             num: 0,
-            shows: false,
+            shows: false
         };
     },
-    mounted: function () {
+    mounted: function() {
         window.addEventListener("scroll", this.handleScroll, true);
     },
     methods: {
@@ -73,11 +73,11 @@ export default {
         setColor(index) {
             this.num = index;
             this.$emit("_click", this.num);
-        },
+        }
     },
     destroyed() {
         window.removeEventListener("scroll", this.handleScroll);
-    },
+    }
 };
 </script>
 <style lang="scss" scoped>

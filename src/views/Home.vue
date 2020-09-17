@@ -57,21 +57,21 @@
             <div class="content">
                 <h3>经历</h3>
                 <p>{{ data.experienceText }}</p>
-                <div class="conbox">
+                <div
+                    class="conbox"
+                    v-for="(item, index) in data.experience"
+                    :key="index.id"
+                >
                     <div class="timebox">
-                        <span class="bagin">{{
-                            data.experience[0].beginTime
-                        }}</span>
-                        <span class="end">{{
-                            data.experience[0].endTime
-                        }}</span>
+                        <span class="bagin">{{ item.beginTime }}</span>
+                        <span class="end">{{ item.endTime }}</span>
                     </div>
                     <div class="companybox">
                         <div class="pic"></div>
                         <div class="title">
-                            <h4>{{ data.experience[0].company }}</h4>
-                            <h5>{{ data.experience[0].job }}</h5>
-                            <p>{{ data.experience[0].reap }}</p>
+                            <h4>{{ item.company }}</h4>
+                            <h5>{{ item.job }}</h5>
+                            <p>{{ item.reap }}</p>
                         </div>
                     </div>
                 </div>
@@ -81,31 +81,38 @@
         <section id="project">
             <div class="content">
                 <h3>项目</h3>
-                <div
-                    class="projectbox"
-                    v-for="(item, index) in data.project"
-                    :key="index"
-                >
-                    <div class="protime">
-                        <span class="bagin">{{ item.beginTime }}</span>
-                        <span class="end">{{ item.endTime }}</span>
-                    </div>
-                    <div class="expbox">
-                        <div class="pic"></div>
-                        <div class="title">
-                            <h4>{{ item.proName }}</h4>
-                            <h5>项目周期：{{ item.period }}</h5>
-                            <p>{{ item.describe }}</p>
-                            <p class="lis">
-                                <span>
-                                    <p
-                                        v-for="(ele, index) in item.science"
-                                        :key="index"
-                                    >
-                                        {{ ele }}
-                                    </p>
-                                </span>
-                            </p>
+                <div v-for="(item, index) in data.project" :key="index.id">
+                    <h4
+                        style="text-align: center;color: #5b4c5c;padding-bottom: 1px;font-size: 25px;"
+                    >
+                        {{ item.name }}
+                    </h4>
+                    <div
+                        class="projectbox"
+                        v-for="(i, index) in item.list"
+                        :key="index"
+                    >
+                        <div class="protime">
+                            <span class="bagin">{{ i.beginTime }}</span>
+                            <span class="end">{{ i.endTime }}</span>
+                        </div>
+                        <div class="expbox">
+                            <div class="pic"></div>
+                            <div class="title">
+                                <h4>{{ i.proName }}</h4>
+                                <h5>项目周期：{{ i.period }}</h5>
+                                <p>{{ i.describe }}</p>
+                                <p class="lis">
+                                    <span>
+                                        <p
+                                            v-for="(ele, index) in i.science"
+                                            :key="index"
+                                        >
+                                            {{ ele }}
+                                        </p>
+                                    </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -146,19 +153,23 @@ export default {
     components: {
         Swiper,
         Nav,
-        Gotop,
+        Gotop
     },
 
     data() {
         return {
             data,
             show: false,
+            index: 0
         };
+    },
+    mounted() {
+        this.course = document.querySelectorAll("section");
     },
     computed: {
         ...mapState(["imgs"]),
         ...mapState(["navText"]),
-        ...mapState(["aboutMeList"]),
+        ...mapState(["aboutMeList"])
     },
     methods: {
         scroll(val) {
@@ -169,18 +180,19 @@ export default {
             course[val].scrollIntoView({
                 behavior: "smooth",
                 block: "start",
-                inline: "nearest",
+                inline: "nearest"
             });
         },
         handleGithub() {
             window.location.href = "https://github.com/OctoberToEscape";
-        },
-    },
+        }
+    }
 };
 </script>
 <style scoped lang="scss" scoped>
 .home {
     min-width: 1337px;
+
     #aboutme {
         width: 100%;
         background: #f3f2f3;
@@ -299,6 +311,7 @@ export default {
         background: #f3f2f3;
         display: block;
         .content {
+            width: 88%;
             padding-top: 90px;
             padding-bottom: 90px;
             padding-right: 15px;
@@ -397,6 +410,7 @@ export default {
         background: #fff;
         display: block;
         .content {
+            width: 88%;
             padding-top: 90px;
             padding-bottom: 90px;
             padding-right: 15px;
