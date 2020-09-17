@@ -1,22 +1,15 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router/router'
-import store from './store/store'
-import './registerServiceWorker'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router/router";
+import store from "./store/store";
 //Vant UI
-import Vant from './vant/vant'
-Vant()
-//qs解决post请求跨域问题
-import qs from 'qs'
-Vue.prototype.$qs = qs
-//axios
-import axios from 'axios'
-Vue.prototype.$axios = axios
+import Vant from "./vant/vant";
+Vant();
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+    router,
+    store,
+    render: (h) => h(App),
+}).$mount("#app");
